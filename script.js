@@ -21,17 +21,22 @@ function operate(a, b, operator) {
   return result;
 }
 
-const displayedButtons = document.querySelectorAll(`button[type="button"]`);
+//Populate display with numbers
+const numberedButtons = document.querySelectorAll(`button[name="btnNumber"]`);
 const display = document.querySelector("#display-text");
-displayedButtons.forEach((button) => {
+numberedButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    //the algorithm should be entered here
     display.textContent += button.value;
   });
 });
 
-//Jezus, I guess it works now because I select the button itself instead of the class. For fucks sake.
+//when you press any button, it should be checked if operator has been pressed already
+//aka when button clicked, check if operator is true
+//if false and pressed button is number, add to first number
+//if operator is true, and pressed button is number, add to second number
 
-//Populating the display when you click the number buttons
-//Add a click event to every number button except the first row(that comes later)
-//When clicked, change the text content of text display, adding the new clicken content
-//Also when clicked, the variable should be stored
+//if operator is true, and pressed button is operator, check if there is a second number
+//If there is no second number, change the operator
+//If there is a second number, call the operate function with the two numbers and first operator
+//then return the answer on the display, save the answer as first number, and use the operator
