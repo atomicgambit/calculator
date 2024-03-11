@@ -6,16 +6,16 @@ let result = 0;
 function operate(a, b, operator) {
   let result = 0;
   switch (operator) {
-    case "add":
+    case "+":
       result = +a + +b;
       break;
-    case "subtract":
+    case "-":
       result = +a - +b;
       break;
-    case "multiply":
+    case "×":
       result = +a * +b;
       break;
-    case "divide":
+    case "÷":
       result = +a / +b;
       break;
   }
