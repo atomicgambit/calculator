@@ -59,10 +59,26 @@ operatorButtons.forEach((button) => {
       firstNumber = result;
     }
     operator = button.value;
-    display.textContent = "";
+    display.textContent = ""; //might be unnecessary code
     display.textContent += `${firstNumber}${button.value}`;
   });
 });
+
+const equalsButton = document.querySelector(`button[name=btnEquals]`);
+equalsButton.addEventListener("click", () => {
+  if (secondNumber) {
+    result = operate(firstNumber, secondNumber, operator);
+    resetValues();
+    firstNumber = result;
+    display.textContent = result;
+  }
+});
+
+// EQUAL SIGN BUTTON
+//Add a click event for operate button
+//When clicked, check if there is a second number
+//If there is a second number, use the operate function to calculate
+//Else do nothing (no action)
 
 //Add a click event for btnNumber
 //When cklicked, check if firstNumber has a value
