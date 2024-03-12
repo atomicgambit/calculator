@@ -30,7 +30,7 @@ function resetValues() {
 
 //Populate display with numbers
 const numberedButtons = document.querySelectorAll(`button[name="btnNumber"]`);
-const display = document.querySelector("#display-text");
+const displaySmall = document.querySelector("#displaySmall");
 numberedButtons.forEach((button) => {
   button.addEventListener("click", () => {
     //the algorithm should be entered here
@@ -39,7 +39,7 @@ numberedButtons.forEach((button) => {
     } else {
       firstNumber += button.value;
     }
-    display.textContent += button.value;
+    displaySmall.textContent += button.value;
   });
 });
 
@@ -59,8 +59,8 @@ operatorButtons.forEach((button) => {
       firstNumber = result;
     }
     operator = button.value;
-    display.textContent = ""; //might be unnecessary code
-    display.textContent += `${firstNumber}${button.value}`;
+    displaySmall.textContent = ""; //might be unnecessary code
+    displaySmall.textContent += `${firstNumber}${button.value}`;
   });
 });
 
@@ -70,9 +70,15 @@ equalsButton.addEventListener("click", () => {
     result = operate(firstNumber, secondNumber, operator);
     resetValues();
     firstNumber = result;
-    display.textContent = result;
+    displaySmall.textContent = result;
   }
 });
+
+//DISPLAY
+//You need two displays, one big and one small above it
+//The big one needs to show the current first number, current second number or the result
+//The small one needs to show the most recent calculation if equalbutton is pressed
+//Or it needs to show the first number
 
 // EQUAL SIGN BUTTON
 //Add a click event for operate button
