@@ -31,13 +31,16 @@ function resetValues() {
 //Populate display with numbers
 const numberedButtons = document.querySelectorAll(`button[name="btnNumber"]`);
 const displaySmall = document.querySelector("#displaySmall");
+const displayBig = document.querySelector("#displayBig");
 numberedButtons.forEach((button) => {
   button.addEventListener("click", () => {
     //the algorithm should be entered here
     if (operator) {
       secondNumber += button.value;
+      displayBig.textContent = secondNumber;
     } else {
       firstNumber += button.value;
+      displayBig.textContent = firstNumber;
     }
     displaySmall.textContent += button.value;
   });
@@ -68,9 +71,10 @@ const equalsButton = document.querySelector(`button[name=btnEquals]`);
 equalsButton.addEventListener("click", () => {
   if (secondNumber) {
     result = operate(firstNumber, secondNumber, operator);
+    displayBig.textContent = result;
+    displaySmall.textContent = `${firstNumber} ${operator} ${secondNumber} =`;
     resetValues();
-    firstNumber = result;
-    displaySmall.textContent = result;
+    firstNumber = result; //maybe store this in a different variable and get it when you need it
   }
 });
 
