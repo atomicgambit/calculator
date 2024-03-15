@@ -2,6 +2,7 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let result = 0;
+let newCalculation = false;
 
 function operate(a, b, operator) {
   let result = 0;
@@ -38,7 +39,16 @@ numberedButtons.forEach((button) => {
     if (operator) {
       secondNumber += button.value;
       displayBig.textContent = secondNumber;
-    } else {
+    }
+    if (!operator) {
+      firstNumber += button.value;
+      displayBig.textContent = firstNumber;
+    }
+    if (newCalculation) {
+      resetValues();
+      displaySmall.textContent = "";
+      displayBig.textContent = "";
+      newCalculation = false;
       firstNumber += button.value;
       displayBig.textContent = firstNumber;
     }
@@ -64,6 +74,7 @@ operatorButtons.forEach((button) => {
     operator = button.value;
     displaySmall.textContent = ""; //might be unnecessary code
     displaySmall.textContent += `${firstNumber}${button.value}`;
+    newCalculation = false;
   });
 });
 
@@ -74,9 +85,21 @@ equalsButton.addEventListener("click", () => {
     displayBig.textContent = result;
     displaySmall.textContent = `${firstNumber} ${operator} ${secondNumber} =`;
     resetValues();
-    firstNumber = result; //maybe store this in a different variable and get it when you need it
+    firstNumber = result;
+    newCalculation = true;
   }
 });
+
+//Equal button
+//When equal is pressed, store the result in a variable.
+//Create a new variable, called newCalculation and set it to true
+//If the next input is an operator, use that result as firstNumber
+//And set newCalculation to false.
+//If the next input is a number AND newCalc is true, clear all values
+//Clear all text
+//Set newCalculation to false
+//And run the rest of the code
+//For this, you'll need to add a new clause to buttonClicked
 
 //DISPLAY
 //You need two displays, one big and one small above it
@@ -89,25 +112,3 @@ equalsButton.addEventListener("click", () => {
 //When clicked, check if there is a second number
 //If there is a second number, use the operate function to calculate
 //Else do nothing (no action)
-
-//Add a click event for btnNumber
-//When cklicked, check if firstNumber has a value
-//To be clear, 0 and "" is false, but "0" is true.
-//If there is no value, add btnNumber to firstNumber
-//if firstNumber has a value, add btnNumber to secondNumber
-
-//Add clickevenet for btnOperator
-//check if firstNumber is true or false
-//If firstNumber is false, set firstNumber to "0"
-//Change display.textContent to "0" and the operator value, using template literals for example
-//Set operator to proper value
-
-//If firstnumber is true
-//Check if secondNumber is true
-//If true, operate both numbers, and use the result as firstnumber.
-//set the display to the calculated result and the new operator
-
-//If secondNumber is false, check if there is an operator
-//If there is no operator, change the oeprator and add it to display
-//If there is one, also cchange the operator but also remove the last letter of textcontent
-//Remove the last letter of textdisplay and add the new operator
