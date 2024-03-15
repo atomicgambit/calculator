@@ -20,6 +20,7 @@ function operate(a, b, operator) {
       result = +a / +b;
       break;
   }
+  result = Math.round(result * 100) / 100;
   return result;
 }
 
