@@ -90,6 +90,14 @@ equalsButton.addEventListener("click", () => {
   }
 });
 
+const allClearButton = document.querySelector(`button[name=btnAllClear]`);
+allClearButton.addEventListener("click", () => {
+  resetValues();
+  newCalculation = false;
+  displaySmall.textContent = "";
+  displayBig.textContent = "";
+});
+
 //Equal button
 //When equal is pressed, store the result in a variable.
 //Create a new variable, called newCalculation and set it to true
