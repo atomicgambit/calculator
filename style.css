@@ -1,4 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .calculator {
   display: flex;
   justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+}
+
+#displaySmall {
+  font-size: 12px;
+  height: 20px;
+  text-align: end;
+}
+
+#displayBig {
+  font-size: 25px;
+  height: 35px;
+  text-align: end;
+}
+
+.allButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  padding: 10px;
 }
