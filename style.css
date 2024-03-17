@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .calculator {
@@ -11,36 +12,44 @@
 .container {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   width: 200px;
 }
 
 .display {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 }
 
 #displaySmall {
   font-size: 12px;
   height: 20px;
   text-align: end;
+  padding: 10px;
 }
 
 #displayBig {
   font-size: 25px;
   height: 35px;
   text-align: end;
+  padding: 10px;
 }
 
 .allButtons {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .buttons {
   display: flex;
   justify-content: center;
+  gap: 5px;
 }
 
 button {
   padding: 10px;
+  width: 40px;
 }
