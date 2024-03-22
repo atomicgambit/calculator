@@ -74,7 +74,7 @@ operatorButtons.forEach((button) => {
     }
     operator = button.value;
     displaySmall.textContent = ""; //might be unnecessary code
-    displaySmall.textContent += `${firstNumber}${button.value}`;
+    displaySmall.textContent += `${firstNumber} ${button.value}`;
     newCalculation = false;
   });
 });
