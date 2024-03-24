@@ -2,6 +2,7 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let result = 0;
+let stringFirstNumber = "";
 let newCalculation = false;
 
 function operate(a, b, operator) {
@@ -36,7 +37,6 @@ const displaySmall = document.querySelector("#displaySmall");
 const displayBig = document.querySelector("#displayBig");
 numberedButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    //the algorithm should be entered here
     if (operator) {
       secondNumber += button.value;
       displayBig.textContent = secondNumber;
@@ -64,17 +64,13 @@ operatorButtons.forEach((button) => {
       firstNumber = "0";
     }
     if (firstNumber && secondNumber) {
-      // console.log(firstNumber);
-      // console.log(secondNumber);
-      // console.log(operator);
       result = operate(firstNumber, secondNumber, operator);
-      // console.log(result);
       resetValues();
       firstNumber = result;
     }
     operator = button.value;
     displaySmall.textContent = ""; //might be unnecessary code
-    displaySmall.textContent += `${firstNumber} ${button.value}`;
+    displaySmall.textContent += `${firstNumber} ${button.value} `;
     newCalculation = false;
   });
 });
@@ -99,25 +95,50 @@ allClearButton.addEventListener("click", () => {
   displayBig.textContent = "";
 });
 
-//Equal button
-//When equal is pressed, store the result in a variable.
-//Create a new variable, called newCalculation and set it to true
-//If the next input is an operator, use that result as firstNumber
-//And set newCalculation to false.
-//If the next input is a number AND newCalc is true, clear all values
-//Clear all text
-//Set newCalculation to false
-//And run the rest of the code
-//For this, you'll need to add a new clause to buttonClicked
+const delButton = document.querySelector(`button[name=btnClear]`);
+delButton.addEventListener("click", () => {
+  //condition 1, if operator false and firstNumber true
+  if (!operator && firstNumber && !newCalculation) {
+    if (firstNumber.length == 1) {
+      resetValues();
+      displaySmall.textContent = "";
+      displayBig.textContent = "";
+    } else {
+      //FirstNumber needs to be string for slice to work
+      firstNumber = firstNumber.slice(0, -1);
+      displaySmall.textContent = firstNumber;
+      displayBig.textContent = firstNumber;
+    }
+  }
+  if (operator && secondNumber) {
+    if (secondNumber.length == 1) {
+      secondNumber = "0";
+      displaySmall.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+      displayBig.textContent = secondNumber;
+    } else {
+      secondNumber = secondNumber.slice(0, -1);
+      displaySmall.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+      displayBig.textContent = secondNumber;
+    }
+  }
+  if (newCalculation) {
+    resetValues();
+    newCalculation = false;
+    displaySmall.textContent = "";
+    displayBig.textContent = "";
+  }
+});
 
-//DISPLAY
-//You need two displays, one big and one small above it
-//The big one needs to show the current first number, current second number or the result
-//The small one needs to show the most recent calculation if equalbutton is pressed
-//Or it needs to show the first number
-
-// EQUAL SIGN BUTTON
-//Add a click event for operate button
-//When clicked, check if there is a second number
-//If there is a second number, use the operate function to calculate
-//Else do nothing (no action)
+//the del only needs to work on numbers/
+//add click event for del
+//check if there is an operator
+//if there is no operator, check if there is a first number and second number
+//If there is only a first number:
+//check the length of the firstnumber
+//if the length is one, change first number to 0, and change it in both displays
+//if the length is more than one, remove the last character and update in the display and firstnumber
+//if there is a second number
+//check the length of the second number
+//if the length is one, change second number to 0, and change it in both displays
+//if the length is more than one, remove the last character and update in the display and second number
+//Also add that pressing del after the calculation is same as AC
