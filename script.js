@@ -4,6 +4,8 @@ let operator = "";
 let result = 0;
 let stringFirstNumber = "";
 let newCalculation = false;
+//Needed for decimal function:
+let subtext = ".";
 
 function operate(a, b, operator) {
   let result = 0;
@@ -56,6 +58,30 @@ numberedButtons.forEach((button) => {
     displaySmall.textContent += button.value;
   });
 });
+
+const decimalButton = document.querySelector(`button[name=btnDecimal]`);
+decimalButton.addEventListener("click", () => {
+  if (operator && secondNumber.length > 0 && !secondNumber.includes(subtext)) {
+    secondNumber += decimalButton.value;
+    displayBig.textContent = secondNumber;
+    displaySmall.textContent += decimalButton.value;
+  }
+  if (!operator && firstNumber.length > 0 && !firstNumber.includes(subtext)) {
+    firstNumber += decimalButton.value;
+    displayBig.textContent = firstNumber;
+    displaySmall.textContent += decimalButton.value;
+  }
+});
+
+//Decimal display
+//Create variable subtext and let it equal to .
+//create a click event for the decimal button
+//if operator is true and len.secondnumber > 0, and if secondNumber does not include .
+//add decimal to second Number
+//change displayBig and displaySmall
+//if operator is not true and len.firstNumber > 0 nad if firstNumber does not include .
+//add decimal to first Number
+//change displayBig and displaySmall
 
 const operatorButtons = document.querySelectorAll(`button[name="btnOperator"]`);
 operatorButtons.forEach((button) => {
@@ -128,17 +154,3 @@ delButton.addEventListener("click", () => {
     displayBig.textContent = "";
   }
 });
-
-//the del only needs to work on numbers/
-//add click event for del
-//check if there is an operator
-//if there is no operator, check if there is a first number and second number
-//If there is only a first number:
-//check the length of the firstnumber
-//if the length is one, change first number to 0, and change it in both displays
-//if the length is more than one, remove the last character and update in the display and firstnumber
-//if there is a second number
-//check the length of the second number
-//if the length is one, change second number to 0, and change it in both displays
-//if the length is more than one, remove the last character and update in the display and second number
-//Also add that pressing del after the calculation is same as AC
