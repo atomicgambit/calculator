@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: bisque;
+}
+
 .calculator {
   display: flex;
   justify-content: center;
